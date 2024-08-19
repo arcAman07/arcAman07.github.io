@@ -1,0 +1,55 @@
+baseURL = "https://arcAman07.github.io"
+languageCode = "en-us"
+title = "Aman's Blog"
+theme = "PaperMod"
+
+[params]
+defaultTheme = "auto"
+ShowReadingTime = true
+ShowShareButtons = true
+ShowPostNavLinks = true
+ShowBreadCrumbs = true
+ShowCodeCopyButtons = true
+ShowRssButtonInSectionTermList = true
+ShowToc = true
+
+[params.homeInfoParams]
+Title = "Aman's Blog"
+Content = "Welcome to the gateway of my mind"
+
+[[params.socialIcons]]
+name = "Twitter"
+url = "https://x.com/arcAman07"
+
+[[params.socialIcons]]
+name = "LinkedIn"
+url = "https://www.linkedin.com/in/aman-sharma-70078a1bb/"
+
+[[params.socialIcons]]
+name = "Instagram"
+url = "https://www.instagram.com/arcaman07/"
+
+[[params.socialIcons]]
+name = "Github"
+url = "https://github.com/arcAman07"
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+
+[menu]
+  [[menu.main]]
+    identifier = "categories"
+    name = "Categories"
+    url = "/categories/"
+    weight = 10
+  [[menu.main]]
+    identifier = "tags"
+    name = "Tags"
+    url = "/tags/"
+    weight = 20
+  [[menu.main]]
+    identifier = "archives"
+    name = "Archives"
+    url = "/archives/"
+    weight = 30
