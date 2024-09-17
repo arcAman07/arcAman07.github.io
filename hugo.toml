@@ -12,6 +12,9 @@ ShowBreadCrumbs = true
 ShowCodeCopyButtons = true
 ShowRssButtonInSectionTermList = true
 ShowToc = true
+ordersectionsby = "date"
+orderpostsby = "date"
+paginate = 10
 
 [params.homeInfoParams]
 Title = "Aman's Blog"

@@ -1,19 +1,2 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>NLP on Aman&#39;s Blog</title>
-    <link>https://arcAman07.github.io/tags/nlp/</link>
-    <description>Recent content in NLP on Aman&#39;s Blog</description>
-    <generator>Hugo -- 0.133.0</generator>
-    <language>en-us</language>
-    <atom:link href="https://arcAman07.github.io/tags/nlp/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>A peek into BERT</title>
-      <link>https://arcAman07.github.io/posts/bert-transformer/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://arcAman07.github.io/posts/bert-transformer/</guid>
-      <description>Bidirectional Encoder Representations from Transformers abbreviated from BERT was one of the first major breakthroughs in the field of Large Language Models as we know them now. This represents a shift in how machines understand human language, enabling them to understand the intricate nuances and contextual dependencies that make human communication rich and meaningful.
-Key Concepts BERT is powered by a powerful neural network architecture known as Transformers. This architecture incorporates a mechanism called self-attention, allowing BERT to weigh the significance of each word based on its context, both preceding and succeeding.</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>NLP on Aman's Blog</title><link>https://arcAman07.github.io/tags/nlp/</link><description>Recent content in NLP on Aman's Blog</description><generator>Hugo -- 0.133.0</generator><language>en-us</language><lastBuildDate>Tue, 17 Sep 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://arcAman07.github.io/tags/nlp/index.xml" rel="self" type="application/rss+xml"/><item><title>A peek into BERT</title><link>https://arcAman07.github.io/posts/bert-transformer/</link><pubDate>Tue, 17 Sep 2024 00:00:00 +0000</pubDate><guid>https://arcAman07.github.io/posts/bert-transformer/</guid><description>Bidirectional Encoder Representations from Transformers abbreviated from BERT was one of the first major breakthroughs in the field of Large Language Models as we know them now. This represents a shift in how machines understand human language, enabling them to understand the intricate nuances and contextual dependencies that make human communication rich and meaningful.
+Key Concepts BERT is powered by a powerful neural network architecture known as Transformers. This architecture incorporates a mechanism called self-attention, allowing BERT to weigh the significance of each word based on its context, both preceding and succeeding.</description></item></channel></rss>

@@ -1,6 +1,6 @@
 ---
 title: "A peek into BERT"
-date: 
+date: 2024-09-17
 draft: false
 tags: ["NLP", "Transformer"]
 categories: ["Personal","Tech"]
