@@ -16,6 +16,10 @@ ordersectionsby = "date"
 orderpostsby = "date"
 paginate = 10
 
+# Add these lines for better handling of recent posts
+mainSections = ["posts", "blog", "notes"]
+ShowFullTextinRSS = true
+
 [params.homeInfoParams]
 Title = "Aman's Blog"
 Content = "Welcome to the gateway of my mind"
@@ -64,3 +68,7 @@ identifier = "notes"
 name = "Notes"
 url = "/notes/"
 weight = 40
+
+# Add this section to ensure your notes are properly handled
+[outputs]
+home = ["HTML", "RSS", "JSON"]
