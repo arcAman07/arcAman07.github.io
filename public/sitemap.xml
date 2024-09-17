@@ -2,38 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://arcAman07.github.io/</loc>
     <lastmod>2024-09-17T16:08:24+05:30</lastmod>
   </url><url>
-    <loc>http://localhost:1313/notes/</loc>
+    <loc>https://arcAman07.github.io/notes/</loc>
     <lastmod>2024-09-17T16:08:24+05:30</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/blog/</loc>
-    <lastmod>2023-08-19T09:03:20-08:00</lastmod>
+    <loc>https://arcAman07.github.io/posts/bert-transformer/</loc>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
-    <lastmod>2023-08-19T09:03:20-08:00</lastmod>
+    <loc>https://arcAman07.github.io/archives/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/first/</loc>
-    <lastmod>2023-08-19T09:03:20-08:00</lastmod>
+    <loc>https://arcAman07.github.io/categories/</loc>
   </url><url>
-    <loc>http://localhost:1313/posts/my-first-post/</loc>
-    <lastmod>2023-08-19T09:03:20-08:00</lastmod>
+    <loc>https://arcAman07.github.io/tags/nlp/</loc>
   </url><url>
-    <loc>http://localhost:1313/categories/personal/</loc>
-    <lastmod>2023-08-19T09:03:20-08:00</lastmod>
+    <loc>https://arcAman07.github.io/categories/personal/</loc>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2023-08-19T09:03:20-08:00</lastmod>
+    <loc>https://arcAman07.github.io/posts/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2023-08-19T09:03:20-08:00</lastmod>
+    <loc>https://arcAman07.github.io/tags/</loc>
   </url><url>
-    <loc>http://localhost:1313/categories/tech/</loc>
-    <lastmod>2023-08-19T09:03:20-08:00</lastmod>
+    <loc>https://arcAman07.github.io/categories/tech/</loc>
   </url><url>
-    <loc>http://localhost:1313/posts/policy_grad/</loc>
-  </url><url>
-    <loc>http://localhost:1313/archives/</loc>
+    <loc>https://arcAman07.github.io/tags/transformer/</loc>
   </url>
 </urlset>
