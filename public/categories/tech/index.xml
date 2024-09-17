@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Posts on Aman&#39;s Blog</title>
-    <link>http://localhost:1313/posts/</link>
-    <description>Recent content in Posts on Aman&#39;s Blog</description>
+    <title>Tech on Aman&#39;s Blog</title>
+    <link>http://localhost:1313/categories/tech/</link>
+    <description>Recent content in Tech on Aman&#39;s Blog</description>
     <generator>Hugo -- 0.133.0</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 19 Aug 2023 09:03:20 -0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/categories/tech/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>My First Post</title>
       <link>http://localhost:1313/posts/my-first-post/</link>
       <pubDate>Sat, 19 Aug 2023 09:03:20 -0800</pubDate>
       <guid>http://localhost:1313/posts/my-first-post/</guid>
       <description>This is the content of my first blog post. Welcome to my blog!</description>
-    </item>
-    <item>
-      <title></title>
-      <link>http://localhost:1313/posts/policy_grad/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/policy_grad/</guid>
-      <description></description>
     </item>
   </channel>
 </rss>

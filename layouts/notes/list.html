@@ -1,0 +1,13 @@
+{{ define "main" }}
+<section class="notes-list">
+    <h1>My Notes</h1>
+    <ul>
+    {{ range .Pages }}
+        <li>
+            <a href="{{ .Permalink }}">{{ .Title }}</a>
+            <span class="date">{{ .Date.Format "January 2, 2006" }}</span>
+        </li>
+    {{ end }}
+    </ul>
+</section>
+{{ end }}
