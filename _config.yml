@@ -1,11 +1,11 @@
 # Site settings
 title: My Personal Blog
-email: your-email@example.com
+email: amananytime07@gmail.com
 description: >-
   A place where I share my thoughts, ideas, and experiences.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://yourusername.github.io" # the base hostname & protocol for your site
-github_username: yourusername
+url: "https://arcaman07.github.io" # the base hostname & protocol for your site
+github_username: arcaman07
 
 # Build settings
 markdown: kramdown
