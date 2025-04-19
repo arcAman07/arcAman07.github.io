@@ -1,49 +1,23 @@
 # Site settings
-title: My Personal Blog
-email: amananytime07@gmail.com
+title: Aman's Blog
 description: >-
-  A place where I share my thoughts, ideas, and experiences.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://arcaman07.github.io" # the base hostname & protocol for your site
-github_username: arcaman07
+  My thoughts on ML, tech, and other interesting topics
+baseurl: ""
+url: ""
 
 # Build settings
 markdown: kramdown
-theme: minima
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-paginate
   - jekyll-sitemap
 
-# Custom settings
-permalink: /:year/:month/:day/:title/
-paginate: 6
-paginate_path: "/page/:num/"
-
-# Collections
-collections:
-  tags:
-    output: true
-    permalink: /tags/:path/
-
-# Default front matter
-defaults:
-  -
-    scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: "post"
-      comments: true
-  -
-    scope:
-      path: ""
-      type: "tags"
-    values:
-      layout: "tag"
-  -
-    scope:
-      path: ""
-    values:
-      layout: "default"
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .git
+  - build.sh
