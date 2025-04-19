@@ -1,0 +1,48 @@
+backend:
+  name: github
+  repo: yourusername/my-blog # Replace with your GitHub username and repository name
+  branch: main # Branch to update
+  base_url: https://api.netlify.com
+
+# These lines should match your site structure
+media_folder: "assets/images/uploads"
+public_folder: "/assets/images/uploads"
+
+# Content collections
+collections:
+  - name: "posts" # Used in routes, e.g., /admin/collections/posts
+    label: "Posts" # Used in the UI
+    folder: "_posts" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    editor:
+      preview: true # Allows previewing content in the CMS
+    fields: # The fields for each document
+      - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Featured Image", name: "image", widget: "image", required: false}
+      - {label: "Tags", name: "tags", widget: "list", required: false}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Body", name: "body", widget: "markdown"}
+      
+  - name: "pages" # Used in routes, e.g., /admin/collections/pages
+    label: "Pages" # Used in the UI
+    folder: "_pages" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{slug}}" # Filename template, e.g., about.md
+    fields: # The fields for each document
+      - {label: "Layout", name: "layout", widget: "hidden", default: "page"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Permalink", name: "permalink", widget: "string", pattern: ['^\/[a-zA-Z0-9-_\/]+\/$', "Must start and end with a slash"]}
+      - {label: "Body", name: "body", widget: "markdown"}
+
+  - name: "templates" # For saving templates
+    label: "Templates"
+    folder: "_templates"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Type", name: "type", widget: "select", options: ["post", "page"]}
+      - {label: "Content", name: "content", widget: "markdown"}

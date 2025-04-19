@@ -1,0 +1,43 @@
+---
+layout: default
+---
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title-large">{{ page.title }}</h1>
+    <div class="post-meta">
+      <span>{{ page.date | date: "%B %d, %Y" }}</span>
+      {% if page.author %}
+        <span>by {{ page.author }}</span>
+      {% endif %}
+    </div>
+    <div class="post-tags">
+      {% for tag in page.tags %}
+        <a href="{{ '/tags/' | append: tag | relative_url }}" class="tag">{{ tag }}</a>
+      {% endfor %}
+    </div>
+  </header>
+
+  {% if page.image %}
+    <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" class="post-featured-image">
+  {% endif %}
+
+  <div class="post-content-area">
+    {{ content }}
+  </div>
+
+  <div class="share-post">
+    <h3>Share this post</h3>
+    <div class="share-buttons">
+      <a href="https://twitter.com/intent/tweet?text={{ page.title | url_encode }}&url={{ site.url }}{{ page.url }}" target="_blank" class="share-button twitter">Twitter</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u={{ site.url }}{{ page.url }}" target="_blank" class="share-button facebook">Facebook</a>
+      <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ site.url }}{{ page.url }}&title={{ page.title | url_encode }}" target="_blank" class="share-button linkedin">LinkedIn</a>
+    </div>
+  </div>
+
+  {% if page.comments %}
+    <div class="comments-section">
+      <h3>Comments</h3>
+      <!-- You can add a commenting system here like Disqus or GitHub Issues -->
+    </div>
+  {% endif %}
+</article>

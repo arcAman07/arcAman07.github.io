@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Content Manager</title>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+  <!-- Include the script that builds the page and powers Netlify CMS -->
+  <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+  <script>
+    // Register custom preview templates and widgets here if needed
+    
+    // Custom preview style
+    CMS.registerPreviewStyle("/assets/css/main.css");
+    
+    // Register templates
+    const templates = [
+      {
+        name: 'technical-post',
+        label: 'Technical Post',
+        fields: [
+          { name: 'title', label: 'Title', widget: 'string' },
+          { name: 'date', label: 'Date', widget: 'datetime' },
+          { name: 'tags', label: 'Tags', widget: 'list', default: ['technical'] },
+          { name: 'image', label: 'Featured Image', widget: 'image', required: false },
+          { name: 'description', label: 'Description', widget: 'text' },
+          { name: 'body', label: 'Body', widget: 'markdown', 
+            buttons: [
+              'bold', 'italic', 'code', 'link', 'heading-one', 'heading-two', 
+              'heading-three', 'quote', 'bulleted-list', 'numbered-list'
+            ],
+            editor_components: ['image', 'code-block']
+          }
+        ]
+      },
+      {
+        name: 'personal-post',
+        label: 'Personal Post',
+        fields: [
+          { name: 'title', label: 'Title', widget: 'string' },
+          { name: 'date', label: 'Date', widget: 'datetime' },
+          { name: 'tags', label: 'Tags', widget: 'list', default: ['personal'] },
+          { name: 'image', label: 'Featured Image', widget: 'image', required: false },
+          { name: 'description', label: 'Description', widget: 'text' },
+          { name: 'body', label: 'Body', widget: 'markdown' }
+        ]
+      },
+      {
+        name: 'tutorial-post',
+        label: 'Tutorial Post',
+        fields: [
+          { name: 'title', label: 'Title', widget: 'string' },
+          { name: 'date', label: 'Date', widget: 'datetime' },
+          { name: 'tags', label: 'Tags', widget: 'list', default: ['tutorial'] },
+          { name: 'image', label: 'Featured Image', widget: 'image', required: false },
+          { name: 'description', label: 'Description', widget: 'text' },
+          { name: 'difficulty', label: 'Difficulty', widget: 'select', options: ['Beginner', 'Intermediate', 'Advanced'] },
+          { name: 'body', label: 'Body', widget: 'markdown' }
+        ]
+      }
+    ];
+    
+    // Register custom templates
+    templates.forEach(template => {
+      CMS.registerEditorComponent({
+        id: `template-${template.name}`,
+        label: `Template: ${template.label}`,
+        fields: [],
+        pattern: /^$/,
+        fromBlock: function() {
+          return {};
+        },
+        toBlock: function() {
+          const fields = template.fields
+            .filter(field => field.name !== 'body')
+            .map(field => {
+              if (field.name === 'tags' && Array.isArray(field.default)) {
+                return `${field.name}: [${field.default.map(tag => `"${tag}"`).join(', ')}]`;
+              }
+              if (field.default) {
+                return `${field.name}: "${field.default}"`;
+              }
+              return `${field.name}: ""`;
+            })
+            .join('\n');
+          
+          return `---\nlayout: post\n${fields}\n---\n\n`;
+        }
+      });
+    });
+  </script>
+</body>
+</html>

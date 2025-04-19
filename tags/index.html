@@ -1,0 +1,19 @@
+---
+layout: default
+title: Tags
+---
+<h1 class="section-title">Browse by Tag</h1>
+
+{% assign tags = site.posts | map: 'tags' | join: ',' | split: ',' | uniq | sort %}
+
+<div class="tags-container">
+  {% for tag in tags %}
+    <a href="{{ '/tags/' | append: tag | relative_url }}" class="tag-item">
+      <h3>{{ tag }}</h3>
+      <span>
+        {% assign tag_count = site.posts | where_exp: "post", "post.tags contains tag" | size %}
+        {{ tag_count }} post{% if tag_count != 1 %}s{% endif %}
+      </span>
+    </a>
+  {% endfor %}
+</div>

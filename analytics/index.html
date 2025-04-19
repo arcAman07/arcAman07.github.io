@@ -1,0 +1,298 @@
+---
+layout: default
+title: Analytics Dashboard
+---
+<div class="analytics-container">
+  <div class="analytics-header">
+    <h1 class="analytics-title">Blog Analytics Dashboard</h1>
+    <div class="date-range">
+      <label for="timeRange">Time Range:</label>
+      <select id="timeRange" onchange="updateTimeRange(this.value)">
+        <option value="7">Last 7 Days</option>
+        <option value="30" selected>Last 30 Days</option>
+        <option value="90">Last 90 Days</option>
+        <option value="365">Last Year</option>
+        <option value="all">All Time</option>
+      </select>
+    </div>
+  </div>
+  
+  <div class="analytics-grid">
+    <div class="metric-card">
+      <div class="metric-label">Total Views</div>
+      <div class="metric-value" id="totalViews">-</div>
+      <div class="metric-trend" id="viewsTrend"></div>
+    </div>
+    
+    <div class="metric-card">
+      <div class="metric-label">Unique Visitors</div>
+      <div class="metric-value" id="uniqueVisitors">-</div>
+      <div class="metric-trend" id="visitorsTrend"></div>
+    </div>
+    
+    <div class="metric-card">
+      <div class="metric-label">Avg. Time on Page</div>
+      <div class="metric-value" id="avgTimeOnPage">-</div>
+      <div class="metric-trend" id="timeOnPageTrend"></div>
+    </div>
+    
+    <div class="metric-card">
+      <div class="metric-label">Highlights</div>
+      <div class="metric-value" id="totalHighlights">-</div>
+      <div class="metric-trend" id="highlightsTrend"></div>
+    </div>
+  </div>
+  
+  <div class="chart-container">
+    <h2>Traffic Over Time</h2>
+    <canvas id="trafficChart"></canvas>
+  </div>
+  
+  <div class="chart-container">
+    <h2>Traffic by Source</h2>
+    <canvas id="sourceChart"></canvas>
+  </div>
+  
+  <div class="analytics-row">
+    <div class="top-posts">
+      <h2 class="top-posts-title">Top Posts</h2>
+      <div id="topPostsList">
+        <!-- Will be populated by JavaScript -->
+      </div>
+    </div>
+  </div>
+  
+  <div class="analytics-row">
+    <div class="chart-container">
+      <h2>Most Highlighted Sections</h2>
+      <div id="highlightsList">
+        <!-- Will be populated by JavaScript -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Mock data for demonstration purposes
+    // In a real implementation, this would be fetched from your analytics API
+    const mockData = generateMockData();
+    
+    // Update metrics
+    updateMetrics(mockData);
+    
+    // Initialize charts
+    initTrafficChart(mockData);
+    initSourceChart(mockData);
+    
+    // Populate top posts and highlights
+    populateTopPosts(mockData.topPosts);
+    populateHighlights(mockData.highlights);
+  });
+  
+  function updateTimeRange(days) {
+    // In a real implementation, this would fetch new data based on the time range
+    console.log(`Updating data for last ${days} days`);
+    const mockData = generateMockData();
+    
+    // Update all visualizations with new data
+    updateMetrics(mockData);
+    updateCharts(mockData);
+    populateTopPosts(mockData.topPosts);
+    populateHighlights(mockData.highlights);
+  }
+  
+  function updateMetrics(data) {
+    document.getElementById('totalViews').textContent = data.totalViews.toLocaleString();
+    document.getElementById('uniqueVisitors').textContent = data.uniqueVisitors.toLocaleString();
+    document.getElementById('avgTimeOnPage').textContent = `${data.avgTimeOnPage}s`;
+    document.getElementById('totalHighlights').textContent = data.totalHighlights.toLocaleString();
+    
+    // Update trends
+    document.getElementById('viewsTrend').textContent = data.viewsTrend > 0 ? `↑ ${data.viewsTrend}%` : `↓ ${Math.abs(data.viewsTrend)}%`;
+    document.getElementById('viewsTrend').style.color = data.viewsTrend >= 0 ? 'var(--secondary)' : 'var(--accent)';
+    
+    document.getElementById('visitorsTrend').textContent = data.visitorsTrend > 0 ? `↑ ${data.visitorsTrend}%` : `↓ ${Math.abs(data.visitorsTrend)}%`;
+    document.getElementById('visitorsTrend').style.color = data.visitorsTrend >= 0 ? 'var(--secondary)' : 'var(--accent)';
+    
+    document.getElementById('timeOnPageTrend').textContent = data.timeOnPageTrend > 0 ? `↑ ${data.timeOnPageTrend}%` : `↓ ${Math.abs(data.timeOnPageTrend)}%`;
+    document.getElementById('timeOnPageTrend').style.color = data.timeOnPageTrend >= 0 ? 'var(--secondary)' : 'var(--accent)';
+    
+    document.getElementById('highlightsTrend').textContent = data.highlightsTrend > 0 ? `↑ ${data.highlightsTrend}%` : `↓ ${Math.abs(data.highlightsTrend)}%`;
+    document.getElementById('highlightsTrend').style.color = data.highlightsTrend >= 0 ? 'var(--secondary)' : 'var(--accent)';
+  }
+  
+  function initTrafficChart(data) {
+    const ctx = document.getElementById('trafficChart').getContext('2d');
+    
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: data.dates,
+        datasets: [{
+          label: 'Page Views',
+          data: data.traffic,
+          backgroundColor: 'rgba(187, 134, 252, 0.2)',
+          borderColor: 'rgba(187, 134, 252, 1)',
+          borderWidth: 2,
+          tension: 0.4
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: true,
+            labels: {
+              color: 'var(--text-primary)'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            grid: {
+              color: 'rgba(255, 255, 255, 0.1)'
+            },
+            ticks: {
+              color: 'var(--text-secondary)'
+            }
+          },
+          x: {
+            grid: {
+              color: 'rgba(255, 255, 255, 0.1)'
+            },
+            ticks: {
+              color: 'var(--text-secondary)'
+            }
+          }
+        }
+      }
+    });
+  }
+  
+  function initSourceChart(data) {
+    const ctx = document.getElementById('sourceChart').getContext('2d');
+    
+    new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: data.sources.map(s => s.name),
+        datasets: [{
+          data: data.sources.map(s => s.value),
+          backgroundColor: [
+            'rgba(187, 134, 252, 0.8)',
+            'rgba(3, 218, 198, 0.8)',
+            'rgba(207, 102, 121, 0.8)',
+            'rgba(255, 193, 7, 0.8)',
+            'rgba(0, 150, 136, 0.8)'
+          ],
+          borderWidth: 0
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'right',
+            labels: {
+              color: 'var(--text-primary)'
+            }
+          }
+        }
+      }
+    });
+  }
+  
+  function updateCharts(data) {
+    // In a real implementation, you would update the charts with new data
+    console.log('Updating charts with new data');
+  }
+  
+  function populateTopPosts(posts) {
+    const container = document.getElementById('topPostsList');
+    container.innerHTML = '';
+    
+    posts.forEach(post => {
+      const postItem = document.createElement('div');
+      postItem.className = 'post-stat';
+      
+      postItem.innerHTML = `
+        <div class="post-stat-title">${post.title}</div>
+        <div class="post-stat-value">${post.views.toLocaleString()} views</div>
+      `;
+      
+      container.appendChild(postItem);
+    });
+  }
+  
+  function populateHighlights(highlights) {
+    const container = document.getElementById('highlightsList');
+    container.innerHTML = '';
+    
+    highlights.forEach(highlight => {
+      const highlightItem = document.createElement('div');
+      highlightItem.className = 'post-stat';
+      
+      highlightItem.innerHTML = `
+        <div class="post-stat-title">"${highlight.text}"</div>
+        <div class="post-stat-value">${highlight.count} times</div>
+      `;
+      
+      container.appendChild(highlightItem);
+    });
+  }
+  
+  function generateMockData() {
+    // Generate random dates for the last 30 days
+    const dates = [];
+    const traffic = [];
+    const today = new Date();
+    
+    for (let i = 30; i > 0; i--) {
+      const date = new Date(today);
+      date.setDate(date.getDate() - i);
+      dates.push(date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }));
+      
+      // Generate random traffic between 50 and 300
+      traffic.push(Math.floor(Math.random() * 250) + 50);
+    }
+    
+    return {
+      totalViews: Math.floor(Math.random() * 5000) + 1000,
+      uniqueVisitors: Math.floor(Math.random() * 2000) + 500,
+      avgTimeOnPage: Math.floor(Math.random() * 100) + 30,
+      totalHighlights: Math.floor(Math.random() * 200) + 50,
+      viewsTrend: Math.floor(Math.random() * 40) - 20,
+      visitorsTrend: Math.floor(Math.random() * 40) - 10,
+      timeOnPageTrend: Math.floor(Math.random() * 30) - 10,
+      highlightsTrend: Math.floor(Math.random() * 50),
+      dates: dates,
+      traffic: traffic,
+      sources: [
+        { name: 'Direct', value: Math.floor(Math.random() * 30) + 20 },
+        { name: 'Social', value: Math.floor(Math.random() * 20) + 10 },
+        { name: 'Search', value: Math.floor(Math.random() * 40) + 30 },
+        { name: 'Referral', value: Math.floor(Math.random() * 15) + 5 },
+        { name: 'Other', value: Math.floor(Math.random() * 10) + 2 }
+      ],
+      topPosts: [
+        { title: 'How to Build a Personal Website', views: Math.floor(Math.random() * 1000) + 500 },
+        { title: 'My Journey as a Developer', views: Math.floor(Math.random() * 900) + 400 },
+        { title: 'The Future of Web Development', views: Math.floor(Math.random() * 800) + 300 },
+        { title: 'Learning New Technologies in 2023', views: Math.floor(Math.random() * 700) + 200 },
+        { title: 'My Favorite Development Tools', views: Math.floor(Math.random() * 600) + 100 }
+      ],
+      highlights: [
+        { text: 'The key to becoming a great developer is consistent practice', count: Math.floor(Math.random() * 50) + 10 },
+        { text: 'I found that learning by building projects is more effective', count: Math.floor(Math.random() * 40) + 10 },
+        { text: 'Documentation is just as important as the code itself', count: Math.floor(Math.random() * 30) + 10 },
+        { text: 'Testing should be integrated into your development workflow', count: Math.floor(Math.random() * 20) + 10 },
+        { text: 'Always stay curious and open to new technologies', count: Math.floor(Math.random() * 15) + 5 }
+      ]
+    };
+  }
+</script>
